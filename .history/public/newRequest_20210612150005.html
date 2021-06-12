@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Request</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <style>
+        .slider {
+            background-image: url(img/goService.jpeg);
+
+
+            animation: slide 10s infinite;
+
+        }
+
+        #req_name,
+        #name,
+        #category,
+        #type,
+        #price,
+        #desc,
+        #location {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding: 2px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: white;
+
+        }
+
+        h2 {
+            text-align: center;
+            padding: 10px;
+
+        }
+
+        .request {
+            background: #FF5757;
+            width: 500px;
+            margin: 0px 0px 0px 430px;
+            color: white;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        #request {
+            margin-left: 50px;
+        }
+
+        label {
+            color: white;
+            font-family: sans-serif;
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        #sub {
+            width: 200px;
+            padding: 7px;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-style: italic;
+            font-weight: 600;
+            border: none;
+            border-radius: 3px;
+        }
+
+        @keyframes slide {
+            0% {
+                background-image: url(img/goService.jpeg);
+            }
+
+            33% {
+                background-image: url(img/goService3.jpg);
+            }
+
+            67% {
+                background-image: url(img/goService4.jpg);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class=slider>
+        <h1>New Request Form</h1>
+        <div class="request">
+            <h2>Fill in the request details below</h2>
+            <form id="request" action="/request/add" method="POST">
+            
+                <label>Requester Name : </label><br>
+                <input type="text" name="req_name" id="req_name" placeholder="Enter the your Name "><br><br>
+                <label>Request : </label><br>
+                <input type="text" name="scope" id="category" placeholder="Enter the your request "><br><br>
+                <label>Type : </label><br>
+                <input type="text" name="type" id="type" placeholder="Enter the service type "><br><br>
+                <label>Price : </label><br>
+                <input type="text" name="price" id="price" placeholder="Enter the service price"><br><br>
+                <label>Location : </label><br>
+                <input type="text" name="location" id="location" placeholder="Enter the location "><br><br>
+                <label>Description : </label><br>
+                <input type="text" name="description" id="description" placeholder="Enter the service description "
+                    style="height:80px; width: 300px"><br><br>
+                <input type="submit" value="Submit" id="sub"><br><br>
+            </form>
+        </div>
+    </div> -->
+
+    <div class=slider>
+        <h1>New Request Form</h1>
+        <div class="request">
+            <h2>Fill in the request details below</h2>
+            <form class="form-horizontal" role="form" action="#" th:action="@{/greeting}" th:object="${request}" method="post">
+
+                <label>Requester Name : </label><br>
+                <input type="text"  th:field="*{req_name}" class="form-control" id="name" placeholder="Enter requester name"><br><br>
+                <label>Request : </label><br>
+                <input type="text"  th:field="*{scope}" class="form-control" id="category" placeholder="Enter your request"><br><br>
+                <label>Type : </label><br>
+                <input type="text"  th:field="*{type}" class="form-control" id="type" placeholder="Enter type"><br><br>
+                <label>Price : </label><br>
+                <input type="text"  th:field="*{price}" class="form-control" id="price" placeholder="Enter price"><br><br>
+                <label>Location : </label><br>
+                <input type="text"  th:field="*{location}" class="form-control" id="location" placeholder="Enter name"><br><br>
+                <label>Description : </label><br>
+                <input type="text"  th:field="*{description}" class="form-control" id="description" placeholder="Enter name"
+                    style="height:80px; width: 300px"><br><br>
+                    <button type="submit" class="btn btn-primary" id="btn">Submit</button>
+                    <input type="reset" class="btn btn-warning" value="Reset" />
+            </form>
+        </div>
+    </div>
+    <!-- <script>
+        window.addEventListener('load',
+            function () {
+                const name = localStorage.getItem("userName");
+                console.log(name);
+                document.getElementById("req_name").value = name;
+            }, false);
+
+        $('#request').submit(function (event) {
+            event.preventDefault();
+
+
+            var formData = $(this).serialize();
+
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/shovice/api/request/",
+                data: formData,
+                dataType: "json",
+
+                success: function (data, status, xhr) {
+                    if (data.rowcount > 0) {
+                        alert('Succesfully add your request');
+                        window.location.replace("./homepage.html");
+                    }
+                    else {
+                        alert('fail to add the request, ' + data.errormessage);
+                    }
+                },
+
+                error: function () {
+                    alert('error: ' + status.log);
+                }
+            });
+        });
+
+    </script> -->
+</body>
+
+</html>
